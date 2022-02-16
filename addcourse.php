@@ -9,10 +9,15 @@
         <div class="form-group">
             <label>Course Trainer</label>
             <select name="course">
-                <option value=""selected disabled>Select Course</option>
-                <option value="1">Mohiuddin Tarek</option>
-                <option value="1">Tofayel Ahmed</option>
-                <option value="1">Mis Heli</option>
+                <option value=""selected disabled>Select Trainer</option>
+                <?php 
+                $db = mysqli_connect("localhost","root","","class") or die("Error");
+                $fetch_query = "SELECT * FROM trainer";
+                $r = mysqli_query($db,$fetch_query) or die(mysqli_error());
+                while ($trainerdata = mysqli_fetch_assoc($r )) {
+                ?>
+                <option value="<?php echo$trainerdata['t_id']; ?>"><?php echo$trainerdata['t_name'] ?></option>
+            <?php } ?>
             </select>
         </div>
         <div class="form-group">
